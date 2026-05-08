@@ -1,5 +1,5 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: demo-app
   namespace: default
@@ -18,3 +18,11 @@ spec:
           image: ghcr.io/ohmoomtang/k3s-gitops:latest
           ports:
             - containerPort: 3000
+  strategy:
+    canary:
+      steps:
+        - setWeight: 20 # 20% canary traffic
+        - pause: { duration: 30s }
+        - setWeight: 50
+        - pause: { duration: 30s }
+        - setWeight: 100
