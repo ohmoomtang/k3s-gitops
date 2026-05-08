@@ -18,16 +18,16 @@ spec:
           image: ghcr.io/ohmoomtang/k3s-gitops:latest
           ports:
             - containerPort: 3000
-strategy:
-  canary:
-    canaryService: demo-app-canary
-    stableService: demo-app
-    trafficRouting:
-      nginx:
-        stableIngress: demo-app
-    steps:
-      - setWeight: 20
-      - pause: { duration: 30s }
-      - setWeight: 50
-      - pause: { duration: 30s }
-      - setWeight: 100
+  strategy:
+    canary:
+      canaryService: demo-app-canary
+      stableService: demo-app
+      trafficRouting:
+        nginx:
+          stableIngress: demo-app
+      steps:
+        - setWeight: 20
+        - pause: { duration: 30s }
+        - setWeight: 50
+        - pause: { duration: 30s }
+        - setWeight: 100
