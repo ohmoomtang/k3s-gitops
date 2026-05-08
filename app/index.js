@@ -6,7 +6,7 @@ const server = http.createServer((req, res) => {
   res.end(`
     <html>
       <body style="font-family: monospace; padding: 40px;">
-        <h2>🚀 Hello from K3s!</h2>
+        <h2 style="color:red">🚀 Hello from K3s!</h2>
         <p><b>Pod:</b> ${os.hostname()}</p>
         <p><b>Node IP:</b> ${
           Object.values(os.networkInterfaces())
