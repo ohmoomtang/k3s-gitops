@@ -18,6 +18,9 @@ spec:
           image: ghcr.io/ohmoomtang/k3s-gitops:latest
           ports:
             - containerPort: 3000
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: 'http://tempo.monitoring.svc.cluster.local:4318/v1/traces'
   strategy:
     canary:
       canaryService: demo-app-canary
