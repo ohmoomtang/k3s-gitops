@@ -21,8 +21,6 @@ spec:
           env:
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: 'http://tempo.monitoring:4318/v1/traces'
-            - name: OTEL_LOG_LEVEL
-              value: 'debug'
   strategy:
     canary:
       canaryService: demo-app-canary
