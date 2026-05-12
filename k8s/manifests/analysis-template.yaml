@@ -6,6 +6,7 @@ metadata:
 spec:
   metrics:
     - name: error-rate
+      count: 3
       interval: 30s
       failureLimit: 2
       provider:
