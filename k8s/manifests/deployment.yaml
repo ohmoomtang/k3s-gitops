@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: demo-app
-          image: ghcr.io/ohmoomtang/k3s-gitops:latest
+          image: ghcr.io/ohmoomtang/k3s-gitops:6b41a8fdfe58c56c8e2ab9bb57ffe00e71538f07
           ports:
             - containerPort: 3000
           env:
