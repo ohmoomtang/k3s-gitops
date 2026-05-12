@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: error-rate
+  namespace: default
+spec:
+  metrics:
+    - name: error-rate
+      interval: 30s
+      failureLimit: 2
+      provider:
+        prometheus:
+          address: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+          query: |
+            sum(rate(promtail_request_duration_seconds_count{status_code=~"5.."}[1m]))
+            /
+            sum(rate(promtail_request_duration_seconds_count[1m]))
+      successCondition: result[0] < 0.05
+      failureCondition: result[0] >= 0.05
