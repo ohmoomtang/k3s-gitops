@@ -13,8 +13,9 @@ spec:
         prometheus:
           address: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
           query: |
-            sum(rate(promtail_request_duration_seconds_count{status_code=~"5.."}[1m]))
-            /
-            sum(rate(promtail_request_duration_seconds_count[1m]))
+            sum(rate(http_requests_total{status=~"5.."}[1m])) 
+            / 
+            sum(rate(http_requests_total[1m])) 
+            or vector(0)
       successCondition: result[0] < 0.05
       failureCondition: result[0] >= 0.05
